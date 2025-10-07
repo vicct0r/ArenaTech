@@ -9,7 +9,7 @@
 
 ## 🛠️ Tecnologias Utilizadas
 - **Backend:** Django + PostgreSQL
-- **Frontend:** JavaScript + HTML/CSS
+- **Frontend:** -
 
 ## 🤝 Contribuidores    
 - [Valteni](https://github.com/Valteni)  

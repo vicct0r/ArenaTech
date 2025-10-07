@@ -1,0 +1,284 @@
+{% extends '_base.html' %}
+
+{% block title %}Home - Aluguel de Quadras Esportivas{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container text-center">
+        <h1 class="display-4 fw-bold mb-4">Encontre e Reserve Quadras Esportivas</h1>
+        <p class="lead mb-5">A maneira mais fácil de alugar quadras para futebol, vôlei, basquete e muito mais!</p>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <form class="d-flex">
+                    <input type="text" class="form-control me-2" placeholder="Qual esporte você quer praticar?">
+                    <input type="text" class="form-control me-2" placeholder="Cidade ou bairro">
+                    <button class="btn btn-warning btn-lg" type="submit">
+                        <i class="bi bi-search me-2"></i>Buscar
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Como Funciona -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Como Funciona</h2>
+            <p class="lead text-muted">Reserve sua quadra em 3 passos simples</p>
+        </div>
+        <div class="row text-center">
+            <div class="col-md-4 mb-4">
+                <div class="card border-0 bg-white h-100">
+                    <div class="card-body p-4">
+                        <div class="bg-primary rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                            <i class="bi bi-search text-white" style="font-size: 2rem;"></i>
+                        </div>
+                        <h5 class="card-title">1. Encontre</h5>
+                        <p class="card-text">Busque por quadras disponíveis na sua região pelo esporte que deseja praticar.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card border-0 bg-white h-100">
+                    <div class="card-body p-4">
+                        <div class="bg-primary rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                            <i class="bi bi-calendar-check text-white" style="font-size: 2rem;"></i>
+                        </div>
+                        <h5 class="card-title">2. Reserve</h5>
+                        <p class="card-text">Escolha o horário que melhor se encaixa na sua agenda e faça a reserva online.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card border-0 bg-white h-100">
+                    <div class="card-body p-4">
+                        <div class="bg-primary rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                            <i class="bi bi-trophy text-white" style="font-size: 2rem;"></i>
+                        </div>
+                        <h5 class="card-title">3. Jogue</h5>
+                        <p class="card-text">Compareça no local no horário reservado e aproveite seu esporte favorito!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Esportes Disponíveis -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Esportes Disponíveis</h2>
+            <p class="lead text-muted">Encontre quadras para diversas modalidades esportivas</p>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-6 mb-4">
+                <div class="card text-center h-100">
+                    <div class="card-body">
+                        <i class="bi bi-dribbble sport-icon"></i>
+                        <h5 class="card-title mt-2">Basquete</h5>
+                        <p class="card-text text-muted">45 quadras disponíveis</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6 mb-4">
+                <div class="card text-center h-100">
+                    <div class="card-body">
+                        <i class="bi bi-circle sport-icon"></i>
+                        <h5 class="card-title mt-2">Futebol</h5>
+                        <p class="card-text text-muted">128 quadras disponíveis</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6 mb-4">
+                <div class="card text-center h-100">
+                    <div class="card-body">
+                        <i class="bi bi-dot sport-icon"></i>
+                        <h5 class="card-title mt-2">Vôlei</h5>
+                        <p class="card-text text-muted">67 quadras disponíveis</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6 mb-4">
+                <div class="card text-center h-100">
+                    <div class="card-body">
+                        <i class="bi bi-circle-fill sport-icon"></i>
+                        <h5 class="card-title mt-2">Tênis</h5>
+                        <p class="card-text text-muted">32 quadras disponíveis</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Quadras em Destaque -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-5">
+            <div>
+                <h2 class="fw-bold">Quadras em Destaque</h2>
+                <p class="text-muted">As quadras mais bem avaliadas pelos nossos usuários</p>
+            </div>
+            <a href="{% url 'courts:list' %}" class="btn btn-outline-primary">Ver Todas</a>
+        </div>
+        <div class="row">
+            <!-- Quadra 1 -->
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <img src="https://images.unsplash.com/photo-1540753003857-32e3154b69e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="card-img-top" alt="Quadra de Futebol Society" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <h5 class="card-title">Arena Sports Center</h5>
+                            <span class="badge bg-success">4.8 ★</span>
+                        </div>
+                        <p class="card-text">Quadra society com gramado sintético de última geração e iluminação profissional.</p>
+                        <div class="mb-3">
+                            <span class="badge bg-light text-dark me-1"><i class="bi bi-geo-alt"></i> Centro</span>
+                            <span class="badge bg-light text-dark me-1"><i class="bi bi-people"></i> Até 14 jogadores</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="h5 text-primary mb-0">R$ 120/hora</span>
+                            <a href="#" class="btn btn-primary">Reservar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Quadra 2 -->
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="card-img-top" alt="Quadra de Basquete" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <h5 class="card-title">Basket Park</h5>
+                            <span class="badge bg-success">4.9 ★</span>
+                        </div>
+                        <p class="card-text">Quadra coberta de basquete com piso profissional e tabelas eletrônicas.</p>
+                        <div class="mb-3">
+                            <span class="badge bg-light text-dark me-1"><i class="bi bi-geo-alt"></i> Zona Sul</span>
+                            <span class="badge bg-light text-dark me-1"><i class="bi bi-droplet"></i> Piso antiderrapante</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="h5 text-primary mb-0">R$ 80/hora</span>
+                            <a href="#" class="btn btn-primary">Reservar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Quadra 3 -->
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <img src="https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="card-img-top" alt="Quadra de Vôlei" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <h5 class="card-title">Vôlei Praia Clube</h5>
+                            <span class="badge bg-success">4.7 ★</span>
+                        </div>
+                        <p class="card-text">Quadra de vôlei de praia com areia especial e estrutura completa.</p>
+                        <div class="mb-3">
+                            <span class="badge bg-light text-dark me-1"><i class="bi bi-geo-alt"></i> Praia do Sol</span>
+                            <span class="badge bg-light text-dark me-1"><i class="bi bi-sun"></i> Área aberta</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="h5 text-primary mb-0">R$ 90/hora</span>
+                            <a href="#" class="btn btn-primary">Reservar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Depoimentos -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">O Que Nossos Clientes Dizem</h2>
+            <p class="lead text-muted">Experiências reais de quem já reservou conosco</p>
+        </div>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card border-0 bg-light h-100">
+                    <div class="card-body p-4">
+                        <div class="text-warning mb-3">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                        <p class="card-text">"Sempre reservo pelo site, muito prático e as quadras são excelentes. Nunca tive problemas!"</p>
+                        <div class="d-flex align-items-center mt-3">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" class="rounded-circle me-3" width="50" height="50" alt="Carlos Silva">
+                            <div>
+                                <h6 class="mb-0">Carlos Silva</h6>
+                                <small class="text-muted">Joga futebol toda semana</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card border-0 bg-light h-100">
+                    <div class="card-body p-4">
+                        <div class="text-warning mb-3">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                        <p class="card-text">"O sistema de reservas é muito intuitivo. Consigo encontrar horários disponíveis rapidamente."</p>
+                        <div class="d-flex align-items-center mt-3">
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" class="rounded-circle me-3" width="50" height="50" alt="Ana Santos">
+                            <div>
+                                <h6 class="mb-0">Ana Santos</h6>
+                                <small class="text-muted">Joga vôlei aos fins de semana</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card border-0 bg-light h-100">
+                    <div class="card-body p-4">
+                        <div class="text-warning mb-3">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-half"></i>
+                        </div>
+                        <p class="card-text">"Excelente variedade de quadras. Sempre encontro opções perto de casa com bons preços."</p>
+                        <div class="d-flex align-items-center mt-3">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" class="rounded-circle me-3" width="50" height="50" alt="Roberto Lima">
+                            <div>
+                                <h6 class="mb-0">Roberto Lima</h6>
+                                <small class="text-muted">Pratica basquete há 5 anos</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Final -->
+<section class="py-5 bg-primary text-white">
+    <div class="container text-center">
+        <h2 class="fw-bold mb-3">Pronto para Jogar?</h2>
+        <p class="lead mb-4">Cadastre-se agora e reserve sua quadra em minutos</p>
+        <div class="d-flex justify-content-center gap-3 flex-wrap">
+            <a href="{% url 'users:register' %}" class="btn btn-warning btn-lg">Criar Conta Gratuita</a>
+            <a href="{% url 'courts:list' %}" class="btn btn-outline-light btn-lg">Ver Quadras Disponíveis</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
