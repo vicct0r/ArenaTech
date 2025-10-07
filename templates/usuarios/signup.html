@@ -1,0 +1,209 @@
+{% extends '_base.html' %}
+
+{% block title %}Signup{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-primary text-white text-center py-4">
+                    <h2 class="mb-0"><i class="bi bi-person-plus me-2"></i>Criar Conta</h2>
+                    <p class="mb-0 mt-2">Junte-se à nossa comunidade esportiva</p>
+                </div>
+                
+                <div class="card-body p-5">
+                    <form method="POST" action="{% url 'usuarios:signup' %}" novalidate>
+                        {% csrf_token %}
+                        
+                        {% if form.errors %}
+                            <div class="alert alert-danger">
+                                <i class="bi bi-exclamation-triangle me-2"></i>
+                                <strong>Erro no cadastro!</strong> Por favor, corrija os erros abaixo.
+                            </div>
+                        {% endif %}
+
+                        <!-- Email -->
+                        <div class="mb-4">
+                            <label for="id_email" class="form-label fw-bold">E-mail <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                                <input type="email" 
+                                       name="email" 
+                                       class="form-control {% if form.email.errors %}is-invalid{% endif %}" 
+                                       id="id_email" 
+                                       value="{{ form.email.value|default:'' }}"
+                                       placeholder="seu@email.com"
+                                       required>
+                            </div>
+                            {% if form.email.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.email.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Nome Completo -->
+                        <div class="mb-4">
+                            <label for="id_full_name" class="form-label fw-bold">Nome Completo <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-person"></i></span>
+                                <input type="text" 
+                                       name="full_name" 
+                                       class="form-control {% if form.full_name.errors %}is-invalid{% endif %}" 
+                                       id="id_full_name" 
+                                       value="{{ form.full_name.value|default:'' }}"
+                                       placeholder="Seu nome completo"
+                                       required>
+                            </div>
+                            {% if form.full_name.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.full_name.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Telefone -->
+                        <div class="mb-4">
+                            <label for="id_phone" class="form-label fw-bold">Telefone</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-phone"></i></span>
+                                <input type="text" 
+                                       name="phone" 
+                                       class="form-control {% if form.phone.errors %}is-invalid{% endif %}" 
+                                       id="id_phone" 
+                                       value="{{ form.phone.value|default:'' }}"
+                                       placeholder="(11) 99999-9999">
+                            </div>
+                            {% if form.phone.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.phone.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            <div class="form-text">Útil para contato sobre reservas</div>
+                        </div>
+
+                        <!-- Senha -->
+                        <div class="mb-4">
+                            <label for="id_password1" class="form-label fw-bold">Senha <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                                <input type="password" 
+                                       name="password1" 
+                                       class="form-control {% if form.password1.errors %}is-invalid{% endif %}" 
+                                       id="id_password1" 
+                                       placeholder="Crie uma senha segura"
+                                       required>
+                                <button type="button" class="btn btn-outline-secondary toggle-password" data-target="id_password1">
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                            </div>
+                            {% if form.password1.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.password1.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            <div class="form-text">Mínimo de 8 caracteres</div>
+                        </div>
+
+                        <!-- Confirmar Senha -->
+                        <div class="mb-4">
+                            <label for="id_password2" class="form-label fw-bold">Confirmar Senha <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
+                                <input type="password" 
+                                       name="password2" 
+                                       class="form-control {% if form.password2.errors %}is-invalid{% endif %}" 
+                                       id="id_password2" 
+                                       placeholder="Digite a senha novamente"
+                                       required>
+                                <button type="button" class="btn btn-outline-secondary toggle-password" data-target="id_password2">
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                            </div>
+                            {% if form.password2.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.password2.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Termos -->
+                        <div class="mb-4 form-check">
+                            <input type="checkbox" class="form-check-input" id="terms" required>
+                            <label class="form-check-label" for="terms">
+                                Concordo com os <a href="#" class="text-primary">Termos de Uso</a> e <a href="#" class="text-primary">Política de Privacidade</a>
+                            </label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-lg w-100 py-3 fw-bold">
+                            <i class="bi bi-person-check me-2"></i>Criar Minha Conta
+                        </button>
+                    </form>
+
+                    <div class="text-center mt-4 pt-3 border-top">
+                        <p class="mb-0">Já tem uma conta? 
+                            <a href="{% url 'account_login' %}" class="text-primary fw-bold">Fazer Login</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript para mostrar/esconder senha -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Toggle password visibility
+    document.querySelectorAll('.toggle-password').forEach(button => {
+        button.addEventListener('click', function() {
+            const targetId = this.getAttribute('data-target');
+            const passwordInput = document.getElementById(targetId);
+            const icon = this.querySelector('i');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.classList.remove('bi-eye');
+                icon.classList.add('bi-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                icon.classList.remove('bi-eye-slash');
+                icon.classList.add('bi-eye');
+            }
+        });
+    });
+
+    // Formatação do telefone
+    const phoneInput = document.getElementById('id_phone');
+    if (phoneInput) {
+        phoneInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 11) value = value.substring(0, 11);
+            
+            if (value.length > 0) {
+                if (value.length <= 2) {
+                    value = '(' + value;
+                } else if (value.length <= 7) {
+                    value = '(' + value.substring(0, 2) + ') ' + value.substring(2);
+                } else {
+                    value = '(' + value.substring(0, 2) + ') ' + value.substring(2, 7) + '-' + value.substring(7);
+                }
+            }
+            e.target.value = value;
+        });
+    }
+});
+</script>
+
+{% endblock %}

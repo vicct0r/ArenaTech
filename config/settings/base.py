@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
 
+    'usuarios',
     'core'
     
 ]
@@ -119,15 +120,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # ALLAUTH CONFIGURATION
 
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_LOGIN_METHODS = {'email'}
+ACCOUNT_SIGNUP_FIELDS = ['email*', 'password1*', 'password2*']
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 
 AUTH_USER_MODEL = 'usuarios.CustomUser' 
 
-ACCOUNT_LOGOUT_REDIRECT_URL = 'home'
-ACCOUNT_LOGIN_REDIRECT_URL = 'perfil'
+ACCOUNT_LOGOUT_REDIRECT_URL = 'core:home'
+LOGIN_REDIRECT_URL = 'core:home'
 
 ACCOUNT_LOGOUT_ON_GET = True
 ACCOUNT_SESSION_REMEMBER = True

@@ -1,102 +1,181 @@
 :root {
-    --primary-color: #2e7d32;
-    --secondary-color: #4caf50;
-    --accent-color: #ff9800;
-    --light-color: #f5f5f5;
-    --dark-color: #333;
+    --primary-color: #2e7d32 !important;
+    --secondary-color: #4caf50 !important;
+    --accent-color: #ff9800 !important;
+    --light-color: #f5f5f5 !important;
+    --dark-color: #333 !important;
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f8f9fa;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+    background-color: #f8f9fa !important;
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 100vh !important;
 }
 
 .main-content {
-    flex: 1;
+    flex: 1 !important;
+}
+
+/* NAVBAR ESPECÍFICA */
+.navbar.navbar-dark.bg-dark {
+    background-color: var(--dark-color) !important;
 }
 
 .navbar-brand {
-    font-weight: bold;
-    font-size: 1.5rem;
+    font-weight: bold !important;
+    font-size: 1.5rem !important;
 }
 
-.nav-link {
-    font-weight: 500;
-    transition: color 0.3s;
+.navbar-dark .navbar-nav .nav-link {
+    font-weight: 500 !important;
+    transition: color 0.3s !important;
 }
 
-.nav-link:hover {
+.navbar-dark .navbar-nav .nav-link:hover {
     color: var(--accent-color) !important;
 }
 
-.btn-primary {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
+/* BOTÕES - FORÇANDO NOSSAS CORES */
+.btn.btn-primary {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)) !important;
+    border: none !important;
+    transition: all 0.3s ease !important;
 }
 
-.btn-primary:hover {
-    background-color: var(--secondary-color);
-    border-color: var(--secondary-color);
+.btn.btn-primary:hover {
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color)) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 5px 15px rgba(46, 125, 50, 0.4) !important;
 }
 
-.btn-outline-primary {
-    color: var(--primary-color);
-    border-color: var(--primary-color);
+.btn.btn-warning {
+    background: linear-gradient(135deg, var(--accent-color), #ffb74d) !important;
+    border: none !important;
+    color: white !important;
+    transition: all 0.3s ease !important;
 }
 
-.btn-outline-primary:hover {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
+.btn.btn-warning:hover {
+    background: linear-gradient(135deg, #f57c00, var(--accent-color)) !important;
+    color: white !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 5px 15px rgba(255, 152, 0, 0.4) !important;
 }
 
+.btn.btn-outline-primary {
+    color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+    transition: all 0.3s ease !important;
+}
+
+.btn.btn-outline-primary:hover {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+    color: white !important;
+    transform: translateY(-2px) !important;
+}
+
+/* HERO SECTION */
 .hero-section {
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
-    background-size: cover;
-    background-position: center;
-    color: white;
-    padding: 100px 0;
+    background: linear-gradient(135deg, rgba(46, 125, 50, 0.85), rgba(76, 175, 80, 0.75)), 
+                url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    color: white !important;
+    padding: 120px 0 !important;
 }
 
+/* CARDS */
 .card {
-    border: none;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
+    border: none !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease !important;
 }
 
 .card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-5px) !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
 }
 
 .sport-icon {
-    font-size: 2rem;
-    color: var(--primary-color);
+    font-size: 2rem !important;
+    color: var(--primary-color) !important;
 }
 
+/* SEÇÃO PRIMÁRIA */
+section.bg-primary {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)) !important;
+}
+
+/* BOTÃO ACCENT PERSONALIZADO */
+.btn-accent {
+    background: linear-gradient(135deg, var(--accent-color), #ffb74d) !important;
+    border: none !important;
+    color: white !important;
+    transition: all 0.3s ease !important;
+}
+
+.btn-accent:hover {
+    background: linear-gradient(135deg, #f57c00, var(--accent-color)) !important;
+    color: white !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 5px 15px rgba(255, 152, 0, 0.4) !important;
+}
+
+/* CORES DE TEXTO */
+.text-primary {
+    color: var(--primary-color) !important;
+}
+
+.bg-primary {
+    background-color: var(--primary-color) !important;
+}
+
+/* BADGES */
+.badge.bg-light {
+    background-color: var(--light-color) !important;
+    color: var(--dark-color) !important;
+    border: 1px solid #dee2e6 !important;
+}
+
+/* FORMULÁRIOS */
+.form-control:focus {
+    border-color: var(--secondary-color) !important;
+    box-shadow: 0 0 0 0.2rem rgba(76, 175, 80, 0.25) !important;
+}
+
+/* FOOTER */
 footer {
-    background-color: var(--dark-color);
-    color: white;
+    background-color: var(--dark-color) !important;
+    color: white !important;
 }
 
 .footer-link {
-    color: #ddd;
-    text-decoration: none;
-    transition: color 0.3s;
+    color: #ddd !important;
+    text-decoration: none !important;
+    transition: color 0.3s !important;
 }
 
 .footer-link:hover {
-    color: var(--accent-color);
+    color: var(--accent-color) !important;
 }
 
 .social-icon {
-    font-size: 1.5rem;
-    margin-right: 15px;
-    color: #ddd;
-    transition: color 0.3s;
+    font-size: 1.5rem !important;
+    margin-right: 15px !important;
+    color: #ddd !important;
+    transition: color 0.3s !important;
+    text-decoration: none !important;
 }
 
 .social-icon:hover {
-    color: var(--accent-color);
+    color: var(--accent-color) !important;
+}
+
+/* ANIMAÇÕES */
+.transition-all {
+    transition: all 0.3s ease !important;
 }
