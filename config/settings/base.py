@@ -35,7 +35,8 @@ INSTALLED_APPS = [
     'allauth.account',
 
     'usuarios',
-    'core'
+    'core',
+    'quadras',
     
 ]
 
