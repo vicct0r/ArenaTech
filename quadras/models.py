@@ -1,5 +1,7 @@
 from django.db import models
 from django.db.models import Q
+from django.conf import settings
+from django.core.exceptions import ValidationError
 
 from stdimage import StdImageField
 from multiselectfield import MultiSelectField
@@ -22,7 +24,7 @@ class Category(Base):
 
 
 class Schedule(Base):
-    """ Agenda base para quadras, podendo ser reaproveitada para mais de uma quadra """
+    """ Agenda que pode representar 1..N quadras """
     SEGUNDA = 'seg'
     TERCA = 'ter'
     QUARTA = 'qua'
@@ -42,9 +44,12 @@ class Schedule(Base):
     )
 
     name = models.CharField(max_length=100)
-    week_days_open = MultiSelectField(choices=DIAS_SEMANA_CHOICES, max_length=3, default=None)
+    week_days_open = MultiSelectField(choices=DIAS_SEMANA_CHOICES, max_length=22, default=None)
     opening_time = models.TimeField()
     closing_time = models.TimeField()
+
+    def __str__(self):
+        return f"{self.name} | {self.opening_time} - {self.closing_time}"
 
 
 class Court(Base):
@@ -72,6 +77,9 @@ class Court(Base):
     image = StdImageField(upload_to='courts_images/')
     price = models.DecimalField(max_digits=10, decimal_places=2)
 
+    def __str__(self):
+        return f"{self.name} - {self.status}"
+
 
 class ScheduleException(Base):
     """ Exceção no funcionamento das quadras, permitindo declarar dias, intervalos e horarios de almoço """
@@ -84,3 +92,32 @@ class ScheduleException(Base):
 
     def __str__(self):
         return f'{self.name} | {self.start_time} - {self.end_time}'
+
+
+class Booking(Base):
+    PENDING = 'pd'
+    CONFIRMED = 'cf'
+    ACTIVE = 'ac'
+    COMPLETED = 'cm'
+    CANCELLED = 'cn'
+    EXPIRED = 'ex' 
+    REFUNDED = 're'
+
+    BOOKING_STATUS_CHOICES = (
+        (PENDING, 'Pending'),
+        (CONFIRMED, 'Confirmed'),
+        (ACTIVE, 'Active'),
+        (COMPLETED, 'Completed'),
+        (CANCELLED, 'Canceled'),
+        (EXPIRED, 'Expired'),
+        (REFUNDED, 'Refunded')
+    )
+
+    customer = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='bookings', on_delete=models.CASCADE)
+    court = models.ForeignKey(Court, related_name='courts_rented', on_delete=models.CASCADE)
+    start_time = models.DateTimeField()
+    end_time = models.DateTimeField()
+    status = models.CharField(max_length=2, choices=BOOKING_STATUS_CHOICES, default=PENDING)
+
+    def __str__(self):
+        return f"Booking: {self.court} - {self.start_time}"
