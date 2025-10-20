@@ -1,0 +1,14 @@
+{% extends '_base.html' %}
+
+{% block content %}
+        <h2>Informações da Quadra</h2>
+        {% for s in slots %}
+            <p>{{s}}</p>
+        {% endfor %}
+        {% for s in horarios %}
+            <p>{{s}}</p>
+        {% endfor %}
+        {% for s in today %}
+            <p>{{s}}</p>
+        {% endfor %}
+{% endblock %}

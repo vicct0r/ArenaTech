@@ -25,13 +25,13 @@ class Category(Base):
 
 class Schedule(Base):
     """ Agenda que pode representar 1..N quadras """
-    SEGUNDA = 'seg'
-    TERCA = 'ter'
-    QUARTA = 'qua'
-    QUINTA = 'qui'
-    SEXTA = 'sex'
-    SABADO = 'sab'
-    DOMINGO = 'dom'
+    SEGUNDA = 0
+    TERCA = 1
+    QUARTA = 2
+    QUINTA = 3
+    SEXTA = 4
+    SABADO = 5
+    DOMINGO = 6
 
     DIAS_SEMANA_CHOICES = (
         (SEGUNDA, 'Segunda-Feira'),
@@ -71,7 +71,7 @@ class Court(Base):
 
     name = models.CharField(max_length=50)
     description = models.TextField(blank=True, null=True)
-    category = models.ForeignKey(Category, related_name='courts', on_delete=models.CASCADE, blank=True, null=True)
+    category = models.ForeignKey(Category, related_name='category_courts', on_delete=models.CASCADE, blank=True, null=True)
     schedule = models.ForeignKey(Schedule, related_name='court_schedule', on_delete=models.SET_NULL, blank=True, null=True)
     status = models.CharField(max_length=3, choices=QUADRA_STATUS_CHOICES, default=DISPONIVEL)
     image = StdImageField(upload_to='courts_images/')
@@ -87,7 +87,7 @@ class ScheduleException(Base):
     description = models.TextField()
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()
-    courts = models.ManyToManyField(Court)
+    courts = models.ManyToManyField(Court, related_name='court_exceptions')
     is_closed = models.BooleanField(default=True)
 
     def __str__(self):
@@ -121,3 +121,6 @@ class Booking(Base):
 
     def __str__(self):
         return f"Booking: {self.court} - {self.start_time}"
+    
+    class Meta:
+        unique_together = ['court', 'start_time', 'end_time']
