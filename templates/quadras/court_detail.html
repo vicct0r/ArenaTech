@@ -1,0 +1,79 @@
+{% extends '_base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Informações da Quadra</h2>
+    
+    <!-- Botões de navegação -->
+     <div class="d-flex justify-content-between align-items-center mb-4">
+        <a href="{% querystring action="previous" %}" 
+           class="btn btn-outline-primary">← Semana Anterior</a>
+        <h4 class="mb-0">Semana de {{ today.0|date:"d/m/Y" }} a {{ today.6|date:"d/m/Y" }}</h4>
+        <a href="{% querystring action="next" %}" 
+           class="btn btn-outline-primary">Próxima Semana →</a>
+    </div>
+    <p>{{ teste }}</p>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>Horário</th>
+                    {% for day in today %}
+                    <th class="text-center">{{ day|date:"d/m (D)" }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for hora in horarios %}
+                <tr>
+                    <td class="fw-bold">{{ hora|time:"H:i" }}</td>
+                    {% for day in today %}
+                        {% with current_date=day current_time=hora %}
+                        {% for slot in slots %}
+                            {% if slot.datetime.date == current_date and slot.datetime.time == current_time %}
+                            <td class="text-center align-middle 
+                                      {% if slot.status == 'disponivel' %}table-success
+                                      {% elif slot.status == 'reservado' %}table-danger
+                                      {% elif slot.status == 'manutencao' %}table-warning
+                                      {% else %}table-secondary{% endif %}">
+                                <span class="badge 
+                                    {% if slot.status == 'disponivel' %}bg-success
+                                    {% elif slot.status == 'reservado' %}bg-danger
+                                    {% elif slot.status == 'manutencao' %}bg-warning
+                                    {% else %}bg-secondary{% endif %}">
+                                    {% if slot.status == 'disponivel' %}Livre
+                                    {% elif slot.status == 'reservado' %}Ocupado
+                                    {% elif slot.status == 'manutencao' %}Manutenção
+                                    {% else %}{{ slot.status }}{% endif %}
+                                </span>
+                            </td>
+                            {% endif %}
+                        {% endfor %}
+                        {% endwith %}
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Legenda -->
+    <div class="mt-3">
+        <h5>Legenda:</h5>
+        <span class="badge bg-success me-2">Livre</span>
+        <span class="badge bg-danger me-2">Ocupado</span>
+        <span class="badge bg-warning me-2">Manutenção</span>
+    </div>
+</div>
+
+<style>
+    .table td {
+        min-width: 120px;
+        height: 60px;
+    }
+    .badge {
+        font-size: 0.8em;
+        padding: 0.5em 0.7em;
+    }
+</style>
+{% endblock %}

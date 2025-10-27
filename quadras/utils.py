@@ -1,5 +1,5 @@
 from django.utils import timezone
-from datetime import datetime, timedelta, time
+from datetime import datetime, timedelta, time, date
 
 
 def schedule_str_format(time_start, time_end, step_minutes=60):
@@ -24,12 +24,8 @@ def session_current_week(current_date_day):
 
 
 def next_week(current_week_session):
-    if current_week_session.weekday() != 0:
-        current_week_session -= timedelta(days=1)
     return current_week_session + timedelta(days=7)
 
 
 def previous_week(current_week_session):
-    if current_week_session.weekday() != 0:
-        current_week_session -= timedelta(days=1)
     return current_week_session - timedelta(days=7)
